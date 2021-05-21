@@ -1,69 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PSA Climate Change Results</title>
-    <style>*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 1rem;
-  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
-  background-color: #f0f0f0;
-  line-height: 1.5;
-}
-
-body {
-  display: grid;
-  place-items: center;
-  min-height: 100vh;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: Raleway, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  text-align: center;
-}
-
-main {
-  max-width: 640px;
-  margin: 0 auto;
-}
-
-.container {
-  padding: 2rem;
-  margin: 2rem 0;
-  background: #fff;
-  width: 115%;
-  transform: translateX(-7.5%);
-
-  border-radius: 9px;
-  box-shadow: 2px 2px 1rem rgba(0, 0, 0, 0.15);
-}
-
-.container h2 {
-  margin-top: 0;
-}
-
-
-</style>
+    <style>
+      @import "./styles/style.css";
+    </style>
   </head>
   <body>
     <main>
       <h1>Climate Change Survey</h1>
       <p>
-        <strong>Philosophy of Science Association Climate Change Task Force</strong>
+        <strong
+          >Philosophy of Science Association Climate Change Task Force</strong
+        >
       </p>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores animi
@@ -73,7 +24,7 @@ main {
       </p>
       <div class="container">
         <h2>Online Activities</h2>
-        <div id="onlineActivities"></div>
+        <canvas id="onlineActivities"></canvas>
       </div>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, sed
@@ -83,22 +34,22 @@ main {
       </p>
       <div class="container">
         <h2>Worked Well for Online Events</h2>
-        <div id="onlinePositives"></div>
+        <canvas id="onlinePositives"></canvas>
       </div>
 
       <div class="container">
         <h2>Worked Poorly for Online Events</h2>
-        <div id="onlineNegatives"></div>
+        <canvas id="onlineNegatives"></canvas>
       </div>
 
       <div class="container">
         <h2>Difficulties for In-Person Conferences</h2>
-        <div id="diffInPerson"></div>
+        <canvas id="diffInPerson"></canvas>
       </div>
 
       <div class="container">
         <h2>Difficulties for Online Conferences</h2>
-        <div id="diffOnline"></div>
+        <canvas id="diffOnline"></canvas>
       </div>
 
       <div class="container">
@@ -106,22 +57,22 @@ main {
           Are You Interested in Reducing the Carbon Footprint Associated with
           Your Research Activity?
         </h2>
-        <div id="ipccGoals"></div>
+        <canvas id="ipccGoals"></canvas>
       </div>
 
       <div class="container">
         <h2>Should Many Conferences/Workshops Continue to Be Hosted Online?</h2>
-        <div id="futureOnline"></div>
+        <canvas id="futureOnline"></canvas>
       </div>
 
       <div class="container">
         <h2>Should Virtual Be the Default Setting for Future Conferences?</h2>
-        <div id="defaultOnline"></div>
+        <canvas id="defaultOnline"></canvas>
       </div>
 
       <div class="container">
         <h2>Actions Being Taken to Reduce Carbon Footprint</h2>
-        <div id="carbonFootprint"></div>
+        <canvas id="carbonFootprint"></canvas>
       </div>
 
       <div class="container">
@@ -129,40 +80,40 @@ main {
           “There Is Special Reason to Host the PSA Biennial Conference as Fully
           or Partly In-Person”
         </h2>
-        <div id="PSAException"></div>
+        <canvas id="PSAException"></canvas>
       </div>
 
       <div class="container">
         <h2>Would You Participate Remotely in a Hybrid PSA Conference?</h2>
-        <div id="remoteParticipation"></div>
+        <canvas id="remoteParticipation"></canvas>
       </div>
 
       <div class="container">
         <h2>Would You Prefer PSA 2024 to Be Held Fully Remotely?</h2>
-        <div id="onlinePreference"></div>
+        <canvas id="onlinePreference"></canvas>
       </div>
 
       <div class="container">
         <h2>Employment Status</h2>
-        <div id="employment"></div>
+        <canvas id="employment"></canvas>
       </div>
 
       <div class="container">
         <h2>Region of Residence</h2>
-        <div id="region"></div>
+        <canvas id="region"></canvas>
       </div>
 
       <div class="container">
         <h2>Race or Ethnicity</h2>
-        <div id="raceEthnicity"></div>
+        <canvas id="raceEthnicity"></canvas>
       </div>
 
       <div class="container">
         <h2>Gender Identity</h2>
-        <div id="gender"></div>
+        <canvas id="gender"></canvas>
       </div>
 
-      <script type="module" src="/index.018c2ba8.js"></script>
+      <script type="module" src="./js/index.js"></script>
     </main>
   </body>
 </html>

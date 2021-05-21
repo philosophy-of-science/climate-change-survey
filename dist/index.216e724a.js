@@ -449,10 +449,10 @@ var _node_modulesChartjsPluginColorschemesSrcColorschemesColorschemesTableau = r
 console.log(_node_modulesChartjsPluginColorschemesSrcColorschemesColorschemesTableau.HueCircle19);
 // GLOBALS
 _chartJsDefault.default.defaults.plugins.title.fontSize = 16;
-_chartJsDefault.default.defaults.plugins.legend.display = false;
+// Chart.defaults.plugins.legend.display = false;
 _chartJsDefault.default.defaults.font.family = "'Inter','sans-serif'";
 _chartJsDefault.default.defaults.font.size = 14;
-console.log(_chartJsDefault.default);
+console.log(_chartJsDefault.default.defaults);
 function truncateArr(arr) {
   const truncatedArr = arr.map(num => Math.round(num));
   return truncatedArr;
@@ -540,6 +540,138 @@ new _chartJsDefault.default(ipccGoalsctx, {
     datasets: [{
       label: "number/total",
       data: [100, 49, 1, 10, 14],
+      backgroundColor: _node_modulesChartjsPluginColorschemesSrcColorschemesColorschemesTableau.HueCircle19
+    }]
+  },
+  options: {}
+});
+let futureOnlinectx = document.getElementById("futureOnline").getContext("2d");
+new _chartJsDefault.default(futureOnlinectx, {
+  type: "pie",
+  data: {
+    labels: ["Yes", "No", "Unsure", "Other"],
+    datasets: [{
+      label: "number/total",
+      data: [95, 34, 31, 26],
+      backgroundColor: _node_modulesChartjsPluginColorschemesSrcColorschemesColorschemesTableau.HueCircle19
+    }]
+  },
+  options: {}
+});
+let defaultOnlinectx = document.getElementById("defaultOnline").getContext("2d");
+new _chartJsDefault.default(defaultOnlinectx, {
+  type: "pie",
+  data: {
+    labels: ["Yes", "No", "Unsure"],
+    datasets: [{
+      label: "number/total",
+      data: [64, 68, 52],
+      backgroundColor: _node_modulesChartjsPluginColorschemesSrcColorschemesColorschemesTableau.HueCircle19
+    }]
+  },
+  options: {}
+});
+let carbonFootprintctx = document.getElementById("carbonFootprint").getContext("2d");
+let carbonFootprint = new _chartJsDefault.default(carbonFootprintctx, {
+  type: "bar",
+  data: {
+    labels: ["Home energy improvements in efficiency and/or electrification", "Changing personal transport modes", "Advocating for institutional change at your home institution", "Advocating for societal policies to aid decarbonization", "Pursuing carbon offsets", "Changing dietary habits", "Other"],
+    datasets: [{
+      label: "number/total",
+      data: truncateArr([69.68085106, 65.95744681, 41.4893617, 61.17021277, 29.25531915, 57.44680851, 10.10638298]),
+      backgroundColor: _node_modulesChartjsPluginColorschemesSrcColorschemesColorschemesTableau.HueCircle19
+    }]
+  },
+  options: {
+    indexAxis: "y"
+  }
+});
+let PSAExceptionctx = document.getElementById("PSAException").getContext("2d");
+new _chartJsDefault.default(PSAExceptionctx, {
+  type: "pie",
+  data: {
+    labels: ["Agree", "Disagree", "Unsure"],
+    datasets: [{
+      label: "number/total",
+      data: [126, 26, 33],
+      backgroundColor: _node_modulesChartjsPluginColorschemesSrcColorschemesColorschemesTableau.HueCircle19
+    }]
+  },
+  options: {}
+});
+var remoteParticipationctx = document.getElementById("remoteParticipation").getContext("2d");
+new _chartJsDefault.default(remoteParticipationctx, {
+  type: "pie",
+  data: {
+    labels: ["Certainly", "Most likely", "More likely than not", "Unlikely", "Certainly not", "Unsure"],
+    datasets: [{
+      label: "number/total",
+      data: [18, 24, 24, 59, 26, 35],
+      backgroundColor: _node_modulesChartjsPluginColorschemesSrcColorschemesColorschemesTableau.HueCircle19
+    }]
+  },
+  options: {}
+});
+var onlinePreferencectx = document.getElementById("onlinePreference").getContext("2d");
+var onlinePreferences = new _chartJsDefault.default(onlinePreferencectx, {
+  type: "pie",
+  data: {
+    labels: ["Certainly", "Most likely", "More likely than not", "Unlikely", "Certainly not", "Unsure"],
+    datasets: [{
+      label: "number/total",
+      data: [13, 11, 15, 40, 85, 20],
+      backgroundColor: _node_modulesChartjsPluginColorschemesSrcColorschemesColorschemesTableau.HueCircle19
+    }]
+  },
+  options: {}
+});
+var employmentctx = document.getElementById("employment").getContext("2d");
+var employment = new _chartJsDefault.default(employmentctx, {
+  type: "pie",
+  data: {
+    labels: ["Undergraduate student", "Graduate student", "Post-doctoral fellow", "Assistant professor", "Associate professor", "Full professor", "Non-tenure track faculty", "Retired scholar", "Non-academic employment", "Other position", "Prefer not to answer", "Multiple positions"],
+    datasets: [{
+      label: "number/total",
+      data: [1, 20, 10, 20, 40, 69, 4, 10, 3, 2, 1, 8],
+      backgroundColor: _node_modulesChartjsPluginColorschemesSrcColorschemesColorschemesTableau.HueCircle19
+    }]
+  },
+  options: {}
+});
+var regionctx = document.getElementById("region").getContext("2d");
+var region = new _chartJsDefault.default(regionctx, {
+  type: "pie",
+  data: {
+    labels: ["US/Canada", "South Asia/East Asia", "Europe/UK", "Mexico/Central America/South America", "Australasia", "Middle East"],
+    datasets: [{
+      label: "number/total",
+      data: [133, 3, 39, 4, 6, 1],
+      backgroundColor: _node_modulesChartjsPluginColorschemesSrcColorschemesColorschemesTableau.HueCircle19
+    }]
+  },
+  options: {}
+});
+var raceEthnicityctx = document.getElementById("raceEthnicity").getContext("2d");
+var raceEthnicity = new _chartJsDefault.default(raceEthnicityctx, {
+  type: "pie",
+  data: {
+    labels: ["White", "Prefer not to answer", "Latino/Latina/Latinx/Hispanic", "Asian/South Asian", "Asian/South Asian, White", "White, A race or ethnicity not listed", "Middle Eastern/North African", "A race or ethnicity not listed", "Black, Middle Eastern/North African"],
+    datasets: [{
+      label: "number/total",
+      data: [139, 17, 6, 10, 2, 1, 2, 2, 1],
+      backgroundColor: _node_modulesChartjsPluginColorschemesSrcColorschemesColorschemesTableau.HueCircle19
+    }]
+  },
+  options: {}
+});
+var genderctx = document.getElementById("gender").getContext("2d");
+var gender = new _chartJsDefault.default(genderctx, {
+  type: "pie",
+  data: {
+    labels: ["Man", "Prefer not to answer", "Woman", "Woman, A gender category/identity not listed", "Agender", "Non-binary", "Agender, Non-binary", "Trans, Man"],
+    datasets: [{
+      label: "number/total",
+      data: [102, 13, 63, 1, 1, 2, 1, 1],
       backgroundColor: _node_modulesChartjsPluginColorschemesSrcColorschemesColorschemesTableau.HueCircle19
     }]
   },

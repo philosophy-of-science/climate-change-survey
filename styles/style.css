@@ -1,7 +1,14 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   font-size: 1rem;
   font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
   background-color: #f0f0f0;
+  line-height: 1.5;
 }
 
 body {
@@ -22,12 +29,18 @@ h6 {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   text-align: center;
 }
+
+main {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
 .container {
   padding: 2rem;
   margin: 2rem 0;
   background: #fff;
-  min-width: 400px;
-  width: 50vw;
+  width: 115%;
+  transform: translateX(-7.5%);
 
   border-radius: 9px;
   box-shadow: 2px 2px 1rem rgba(0, 0, 0, 0.15);
