@@ -3,26 +3,42 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PSA Climate Change Results</title>
+    <title>PSA Climate Change Survey Results</title>
     <style>*,
 *::before,
 *::after {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --white: #f0f0f0;
+  --silver: #e8e8ea;
+
+  --red: #af1f24;
 }
 
 html {
   font-size: 1rem;
   font-size: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
-  background-color: #f0f0f0;
+  background-color: var(--white);
   line-height: 1.5;
+  scroll-behavior: smooth;
 }
 
 body {
-  display: grid;
-  place-items: center;
-  min-height: 100vh;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+a:link,
+a:visited {
+  color: inherit;
+}
+
+p {
+  margin: 1rem 0;
 }
 
 h1,
@@ -33,136 +49,289 @@ h5,
 h6 {
   font-family: Raleway, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  text-align: center;
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(auto, 640px) 2fr;
+  width: 100%;
+  gap: 1rem;
+}
+
+header {
+  grid-column: 1/-1;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr minmax(auto, 640px) 2fr;
+  background-image: radial-gradient(
+      rgba(31, 175, 170, 0.15),
+      rgba(31, 175, 170, 0.25)
+    ),
+    url("iceberg.eef20491.jpg");
+  background-size: cover;
+  color: #fff;
+  min-height: 60vh;
+  padding: 0 1rem;
+  margin-bottom: 3rem;
+}
+
+header .hero__container {
+  grid-column: 2 / 3;
+
+  /* background-color: #fff; */
+}
+
+.hero__text a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  line-height: 1;
+  font-size: 90%;
+}
+
+.hero__text img {
+  height: 2rem;
+  margin-right: 0.25rem;
+}
+
+.hero__text h1 {
+  font-size: 3.75rem;
+  line-height: 1.2;
+  margin: 0.65rem 0;
+  letter-spacing: -0.3px;
+  text-align: left;
+}
+
+.hero__text p {
+  margin-top: 0;
+  color: var(--silver);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
 
 main {
-  max-width: 640px;
-  margin: 0 auto;
+  grid-column: 2 / 3;
+}
+
+aside {
+  grid-column: 3/3;
+  border: 2px solid var(--silver);
+  padding: 1rem 2rem;
+  width: max-content;
+
+  height: max-content;
+  justify-self: center;
+  position: sticky;
+  top: 2rem;
+  background: hsl(0, 0%, 97%);
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 1px 1px 1rem rgba(0, 0, 0, 0.05);
+}
+
+aside p:first-child {
+  margin-top: 0;
+}
+
+aside p:last-child {
+  margin-bottom: 0;
 }
 
 .container {
-  padding: 2rem;
-  margin: 2rem 0;
-  background: #fff;
-  width: 115%;
-  transform: translateX(-7.5%);
-
-  border-radius: 9px;
-  box-shadow: 2px 2px 1rem rgba(0, 0, 0, 0.15);
+  margin: 5rem 0;
+  padding: 1rem 0;
+  border-top: 2px solid var(--silver);
+  border-bottom: 2px solid var(--silver);
 }
 
-.container h2 {
-  margin-top: 0;
+footer {
+  grid-column: 1 / -1;
+  min-height: 5rem;
+  background-color: var(--silver);
+  padding: 3rem;
+}
+
+footer p {
+  margin: 0;
+  text-align: center;
 }
 
 
 </style>
   </head>
   <body>
-    <main>
-      <h1>Climate Change Survey</h1>
-      <p>
-        <strong>Philosophy of Science Association Climate Change Task Force</strong>
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores animi
-        temporibus vero fugiat repudiandae dolores? Molestias iste expedita
-        quaerat reprehenderit blanditiis, adipisci eligendi, consectetur ut nemo
-        quas nulla cum facere.
-      </p>
-      <div class="container">
-        <h2>Online Activities</h2>
-        <div id="onlineActivities"></div>
-      </div>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, sed
-        ducimus. Ad recusandae eos, ab ipsa voluptatibus saepe similique cum
-        sapiente error labore enim perspiciatis reiciendis nihil ipsam minima
-        molestiae.
-      </p>
-      <div class="container">
-        <h2>Worked Well for Online Events</h2>
-        <div id="onlinePositives"></div>
-      </div>
+    <div class="grid">
+      <header>
+        <div class="hero__container">
+          <div class="hero__text">
+            <a href="http://philsci.org" target="_blank" rel="noopener noreferrer">
+              <img src="/logo.16379bdd.png" alt="PSA Logo">
+              Philosophy of Science Association
+            </a>
+            <h1>Climate Change Survey Results</h1>
+            <p>A Report of the Climate Change Task Force</p>
+          </div>
+        </div>
+      </header>
+      <main>
+        <h2 id="1">Overview</h2>
+        <p>
+          During March 2021, the
+          <a href="https://philsci.org">
+            Philosophy of Science Association Climate Task Force
+          </a>
+          (PSA CTF) issued a survey aimed at gathering information on members’
+          experiences of working in a more online environment as a result of the
+          Coronavirus crisis and gauging attitudes towards continuing with some
+          of these practices in the service of the climate crisis.
+        </p>
+        <div class="container">
+          <div id="onlineActivities"></div>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, sed
+          ducimus. Ad recusandae eos, ab ipsa voluptatibus saepe similique cum
+          sapiente error labore enim perspiciatis reiciendis nihil ipsam minima
+          molestiae.
+        </p>
+        <div class="container">
+          <div id="onlinePositives"></div>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores animi
+          temporibus vero fugiat repudiandae dolores? Molestias iste expedita
+          quaerat reprehenderit blanditiis, adipisci eligendi, consectetur ut
+          nemo quas nulla cum facere.
+        </p>
+        <div class="container">
+          <div id="onlineNegatives"></div>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores animi
+          temporibus vero fugiat repudiandae dolores? Molestias iste expedita
+          quaerat reprehenderit blanditiis, adipisci eligendi, consectetur ut
+          nemo quas nulla cum facere.
+        </p>
+        <h2 id="2">Method</h2>
+        <div class="container">
+          <div id="diffInPerson"></div>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores animi
+          temporibus vero fugiat repudiandae dolores? Molestias iste expedita
+          quaerat reprehenderit blanditiis, adipisci eligendi, consectetur ut
+          nemo quas nulla cum facere.
+        </p>
+        <div class="container">
+          <div id="diffOnline"></div>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores animi
+          temporibus vero fugiat repudiandae dolores? Molestias iste expedita
+          quaerat reprehenderit blanditiis, adipisci eligendi, consectetur ut
+          nemo quas nulla cum facere.
+        </p>
+        <div class="container">
+          <div id="ipccGoals"></div>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores animi
+          temporibus vero fugiat repudiandae dolores? Molestias iste expedita
+          quaerat reprehenderit blanditiis, adipisci eligendi, consectetur ut
+          nemo quas nulla cum facere.
+        </p>
+        <div class="container">
+          <div id="futureOnline"></div>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores animi
+          temporibus vero fugiat repudiandae dolores? Molestias iste expedita
+          quaerat reprehenderit blanditiis, adipisci eligendi, consectetur ut
+          nemo quas nulla cum facere.
+        </p>
 
-      <div class="container">
-        <h2>Worked Poorly for Online Events</h2>
-        <div id="onlineNegatives"></div>
-      </div>
+        <h2 id="3">Section III</h2>
 
-      <div class="container">
-        <h2>Difficulties for In-Person Conferences</h2>
-        <div id="diffInPerson"></div>
-      </div>
+        <div class="container">
+          <div id="defaultOnline"></div>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores animi
+          temporibus vero fugiat repudiandae dolores? Molestias iste expedita
+          quaerat reprehenderit blanditiis, adipisci eligendi, consectetur ut
+          nemo quas nulla cum facere.
+        </p>
+        <div class="container">
+          <div id="carbonFootprint"></div>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores animi
+          temporibus vero fugiat repudiandae dolores? Molestias iste expedita
+          quaerat reprehenderit blanditiis, adipisci eligendi, consectetur ut
+          nemo quas nulla cum facere.
+        </p>
+        <div class="container">
+          <div id="PSAException"></div>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores animi
+          temporibus vero fugiat repudiandae dolores? Molestias iste expedita
+          quaerat reprehenderit blanditiis, adipisci eligendi, consectetur ut
+          nemo quas nulla cum facere.
+        </p>
+        <div class="container">
+          <div id="remoteParticipation"></div>
+        </div>
 
-      <div class="container">
-        <h2>Difficulties for Online Conferences</h2>
-        <div id="diffOnline"></div>
-      </div>
+        <h2 id="4">Section IV</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores animi
+          temporibus vero fugiat repudiandae dolores? Molestias iste expedita
+          quaerat reprehenderit blanditiis, adipisci eligendi, consectetur ut
+          nemo quas nulla cum facere.
+        </p>
+        <div class="container">
+          <div id="onlinePreference"></div>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores animi
+          temporibus vero fugiat repudiandae dolores? Molestias iste expedita
+          quaerat reprehenderit blanditiis, adipisci eligendi, consectetur ut
+          nemo quas nulla cum facere.
+        </p>
+        <div class="container">
+          <div id="employment"></div>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores animi
+          temporibus vero fugiat repudiandae dolores? Molestias iste expedita
+          quaerat reprehenderit blanditiis, adipisci eligendi, consectetur ut
+          nemo quas nulla cum facere.
+        </p>
+        <div class="container">
+          <div id="region"></div>
+        </div>
 
-      <div class="container">
-        <h2>
-          Are You Interested in Reducing the Carbon Footprint Associated with
-          Your Research Activity?
-        </h2>
-        <div id="ipccGoals"></div>
-      </div>
+        <div class="container">
+          <div id="raceEthnicity"></div>
+        </div>
 
-      <div class="container">
-        <h2>Should Many Conferences/Workshops Continue to Be Hosted Online?</h2>
-        <div id="futureOnline"></div>
-      </div>
-
-      <div class="container">
-        <h2>Should Virtual Be the Default Setting for Future Conferences?</h2>
-        <div id="defaultOnline"></div>
-      </div>
-
-      <div class="container">
-        <h2>Actions Being Taken to Reduce Carbon Footprint</h2>
-        <div id="carbonFootprint"></div>
-      </div>
-
-      <div class="container">
-        <h2>
-          “There Is Special Reason to Host the PSA Biennial Conference as Fully
-          or Partly In-Person”
-        </h2>
-        <div id="PSAException"></div>
-      </div>
-
-      <div class="container">
-        <h2>Would You Participate Remotely in a Hybrid PSA Conference?</h2>
-        <div id="remoteParticipation"></div>
-      </div>
-
-      <div class="container">
-        <h2>Would You Prefer PSA 2024 to Be Held Fully Remotely?</h2>
-        <div id="onlinePreference"></div>
-      </div>
-
-      <div class="container">
-        <h2>Employment Status</h2>
-        <div id="employment"></div>
-      </div>
-
-      <div class="container">
-        <h2>Region of Residence</h2>
-        <div id="region"></div>
-      </div>
-
-      <div class="container">
-        <h2>Race or Ethnicity</h2>
-        <div id="raceEthnicity"></div>
-      </div>
-
-      <div class="container">
-        <h2>Gender Identity</h2>
-        <div id="gender"></div>
-      </div>
-
-      <script type="module" src="/index.018c2ba8.js"></script>
-    </main>
+        <div class="container">
+          <div id="gender"></div>
+        </div>
+      </main>
+      <aside>
+        <p><b>Sections</b></p>
+      </aside>
+      <footer>
+        <p>
+          Photo by
+          <a href="https://unsplash.com/@anniespratt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Annie Spratt</a>
+          on
+          <a href="https://unsplash.com/s/photos/climate-change?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+        </p>
+      </footer>
+    </div>
+    <script type="module" src="/index.216e724a.js"></script>
   </body>
 </html>
