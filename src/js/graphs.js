@@ -15,6 +15,7 @@ function createChart(obj) {
     chart: {
       type: "bar",
       height: 380,
+      width: "100%",
     },
     legend: {
       show: false,
