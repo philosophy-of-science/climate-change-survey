@@ -111,7 +111,9 @@ header .hero__container {
 
 .content {
   padding: 0 1rem;
+  overflow: hidden;
 }
+
 .sidebar {
   padding: 1rem;
   width: 100%;
