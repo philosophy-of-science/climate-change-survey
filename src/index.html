@@ -1,32 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PSA Climate Change Survey Results</title>
-    <style>
-      @import "./styles/style.css";
-    </style>
-  </head>
-  <body>
-    <div class="grid">
-      <header>
-        <div class="hero__container">
-          <div class="hero__text">
-            <a
-              href="http://philsci.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src="img/logo.png" alt="PSA Logo" />
-              Philosophy of Science Association
-            </a>
-            <h1>Climate Change Survey Results</h1>
-            <p>A Report of the Climate Change Task Force</p>
-          </div>
-        </div>
-      </header>
-      <main>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PSA Climate Change Survey Results</title>
+  <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body>
+  <header>
+    <div class="hero__container">
+      <div class="hero__text">
+        <a href="http://philsci.org" target="_blank" rel="noopener noreferrer">
+          <img src="img/logo.png" alt="PSA Logo" />
+          Philosophy of Science Association
+        </a>
+        <h1>Climate Change Survey Results</h1>
+        <p>A Report of the Climate Change Task Force</p>
+      </div>
+    </div>
+  </header>
+  <div class="grid">
+    <main class="content">
+      <section>
         <h2 id="1">Overview</h2>
         <p>
           During March 2021, the
@@ -65,6 +62,9 @@
           quaerat reprehenderit blanditiis, adipisci eligendi, consectetur ut
           nemo quas nulla cum facere.
         </p>
+      </section>
+      <section>
+
         <h2 id="2">Method</h2>
         <div class="container">
           <div id="diffInPerson"></div>
@@ -102,7 +102,8 @@
           quaerat reprehenderit blanditiis, adipisci eligendi, consectetur ut
           nemo quas nulla cum facere.
         </p>
-
+      </section>
+      <section>
         <h2 id="3">Section III</h2>
 
         <div class="container">
@@ -135,7 +136,8 @@
         <div class="container">
           <div id="remoteParticipation"></div>
         </div>
-
+      </section>
+      <section>
         <h2 id="4">Section IV</h2>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores animi
@@ -172,25 +174,25 @@
         <div class="container">
           <div id="gender"></div>
         </div>
-      </main>
+      </section>
+    </main>
+    <div class="sidebar">
       <aside>
         <p><b>Sections</b></p>
       </aside>
-      <footer>
-        <p>
-          Photo by
-          <a
-            href="https://unsplash.com/@anniespratt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
-            >Annie Spratt</a
-          >
-          on
-          <a
-            href="https://unsplash.com/s/photos/climate-change?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
-            >Unsplash</a
-          >
-        </p>
-      </footer>
     </div>
-    <script type="module" src="./js/index.js"></script>
-  </body>
+  </div>
+  <footer>
+    <p>
+      Photo by
+      <a href="https://unsplash.com/@anniespratt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Annie
+        Spratt</a>
+      on
+      <a
+        href="https://unsplash.com/s/photos/climate-change?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+    </p>
+  </footer>
+  <script type="module" src="./js/index.js"></script>
+</body>
+
 </html>

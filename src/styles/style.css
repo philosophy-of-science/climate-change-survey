@@ -29,8 +29,10 @@ a:link,
 a:visited {
   color: inherit;
 }
+
 p {
   margin: 1rem 0;
+  max-width: 66ch;
 }
 
 h1,
@@ -46,20 +48,25 @@ h6 {
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr minmax(auto, 640px) 2fr;
+  grid-template-columns: 1fr;
   width: 100%;
   gap: 1rem;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: minmax(auto, 900px) minmax(200px, 25%);
+  }
 }
 
 header {
   grid-column: 1/-1;
   align-items: center;
   display: grid;
-  grid-template-columns: 1fr minmax(auto, 640px) 2fr;
-  background-image: radial-gradient(
-      rgba(31, 175, 170, 0.15),
-      rgba(31, 175, 170, 0.25)
-    ),
+  grid-template-columns: 1fr minmax(auto, 1024px) 1fr;
+  background-image: radial-gradient(rgba(9, 54, 53, 0.25), rgba(2, 10, 10, 0.5)),
     url("../img/iceberg.jpg");
   background-size: cover;
   color: #fff;
@@ -101,17 +108,27 @@ header .hero__container {
   letter-spacing: 0.3px;
 }
 
-main {
-  grid-column: 2 / 3;
+.content {
+  padding: 0 1rem;
+}
+.sidebar {
+  padding: 1rem;
+  width: 100%;
+  display: none;
+}
+
+@media (min-width: 1200px) {
+  .sidebar {
+    display: block;
+  }
 }
 
 aside {
-  grid-column: 3/3;
-  border: 2px solid var(--silver);
   padding: 1rem 2rem;
-  width: max-content;
 
+  border: 2px solid var(--silver);
   height: max-content;
+  width: 100%;
   justify-self: center;
   position: sticky;
   top: 2rem;
@@ -145,4 +162,57 @@ footer {
 footer p {
   margin: 0;
   text-align: center;
+}
+
+.section-element p {
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.section-element span {
+  opacity: 0;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  transform: translate(-10px, -50%);
+  left: -1rem;
+  transition: opacity 0.4s ease-out, transform 0.3s ease-out;
+  line-height: 1;
+  height: 16px;
+  width: 16px;
+  color: var(--red);
+}
+
+.section-element a {
+  display: inline-block;
+  line-height: 1;
+}
+
+.section-element ul {
+  display: none;
+  font-size: 0.9em;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+}
+.section-element li a {
+  display: initial;
+  transition: color 1s;
+}
+
+.observed span {
+  transform: translate(0, -50%);
+  transition: opacity 0.3s ease-in, transform 0.3s ease-in;
+  opacity: 1;
+}
+
+.observed ul {
+  display: block;
+}
+
+:link {
+  text-decoration: none;
+}
+
+a.current {
+  color: var(--red);
 }

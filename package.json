@@ -13,7 +13,7 @@
     "chartjs-plugin-colorschemes": "^0.4.0"
   },
   "scripts": {
-    "start": "yarn run parcel serve index.html",
-    "build": "yarn run parcel build index.html"
+    "start": "yarn run parcel serve ./src/index.html",
+    "build": "yarn run parcel build ./src/index.html"
   }
 }

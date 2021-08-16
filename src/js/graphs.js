@@ -1,19 +1,12 @@
 import ApexCharts from "apexcharts";
-import {
-  Tableau10,
-  Tableau20,
-} from "chartjs-plugin-colorschemes/src/colorschemes/colorschemes.tableau";
-
-if (module.hot) {
-  module.hot.accept();
-}
+import { Tableau20 } from "chartjs-plugin-colorschemes/src/colorschemes/colorschemes.tableau";
 
 Apex.colors = Tableau20;
 // Apex.theme.palette = "palette7";
 // console.log(Apex.theme);
 
 function roundNumbers(arr) {
-  const roundedNumbers = arr.map(num => Math.round(num));
+  const roundedNumbers = arr.map((num) => Math.round(num));
   return roundedNumbers;
 }
 
@@ -384,25 +377,8 @@ const data = {
 };
 
 // Render charts
-for (const item in data) {
-  createChart(data[item]);
-}
-
-// Sidebar
-function populateSidebar() {
-  const aside = document.querySelector("aside");
-  const headings = document.querySelectorAll("main h2");
-
-  for (const heading of headings) {
-    const text = heading.textContent;
-    const id = heading.id;
-    const p = document.createElement("p");
-    const a = document.createElement("a");
-    a.textContent = text;
-    a.setAttribute("href", `#${id}`);
-    p.appendChild(a);
-    aside.appendChild(p);
+export default function renderCharts() {
+  for (const item in data) {
+    createChart(data[item]);
   }
 }
-
-populateSidebar();
