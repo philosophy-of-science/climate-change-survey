@@ -4,6 +4,11 @@
   "main": "index.html",
   "author": "Ryan Feigenbaum",
   "license": "MIT",
+  "targets": {
+    "main": {
+      "publicUrl": "https://philosophy-of-science.github.io/climate-change-survey/"
+    }
+  },
   "devDependencies": {
     "parcel": "^2.0.0-beta.2"
   },
