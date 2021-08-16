@@ -72,6 +72,7 @@ function createChart(obj) {
     series: [],
     chart: {
       height: 380,
+      width: "100%",
       type: "pie",
     },
     labels: [],
