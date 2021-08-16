@@ -1,8 +1,7 @@
 // Sidebar
-
 let options = {
-  threshold: 0.5,
-  rootMargin: "-100px 0px",
+  threshold: 0.75,
+  rootMargin: "0px 0px -25%",
 };
 
 let prev = null;
@@ -13,12 +12,6 @@ let callback = (entries, observer) => {
     prev.classList.remove("current");
   }
   entries.forEach((entry) => {
-    // Each entry describes an intersection change for one observed
-    // target element:
-    //   entry.boundingClientRect
-    //   entry.intersectionRatio
-    //   entry.intersectionRect
-
     const intersected = document.querySelector(
       `a[data-target="${entry.target.id}"]`
     );

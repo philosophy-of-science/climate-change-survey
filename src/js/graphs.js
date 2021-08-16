@@ -63,7 +63,7 @@ function createChart(obj) {
       offsetY: 0,
       style: {
         fontFamily: "Inter, sans-serif",
-        fontSize: "15px",
+        fontSize: "16px",
       },
     },
   };
@@ -83,9 +83,6 @@ function createChart(obj) {
       {
         breakpoint: 480,
         options: {
-          chart: {
-            width: 200,
-          },
           legend: {
             position: "bottom",
           },
@@ -100,7 +97,7 @@ function createChart(obj) {
       offsetY: 0,
       style: {
         fontFamily: "Inter, sans-serif",
-        fontSize: "15px",
+        fontSize: "16px",
       },
     },
   };

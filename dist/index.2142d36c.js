@@ -513,7 +513,7 @@ function createChart(obj) {
       offsetY: 0,
       style: {
         fontFamily: "Inter, sans-serif",
-        fontSize: "15px"
+        fontSize: "16px"
       }
     }
   };
@@ -531,9 +531,6 @@ function createChart(obj) {
     responsive: [{
       breakpoint: 480,
       options: {
-        chart: {
-          width: 200
-        },
         legend: {
           position: "bottom"
         }
@@ -547,7 +544,7 @@ function createChart(obj) {
       offsetY: 0,
       style: {
         fontFamily: "Inter, sans-serif",
-        fontSize: "15px"
+        fontSize: "16px"
       }
     }
   };
@@ -15262,8 +15259,8 @@ _parcelHelpers.export(exports, "populateSidebar", function () {
 });
 // Sidebar
 let options = {
-  threshold: 0.5,
-  rootMargin: "-100px 0px"
+  threshold: 0.75,
+  rootMargin: "0px 0px -25%"
 };
 let prev = null;
 let callback = (entries, observer) => {
@@ -15272,11 +15269,6 @@ let callback = (entries, observer) => {
     prev.classList.remove("current");
   }
   entries.forEach(entry => {
-    // Each entry describes an intersection change for one observed
-    // target element:
-    // entry.boundingClientRect
-    // entry.intersectionRatio
-    // entry.intersectionRect
     const intersected = document.querySelector(`a[data-target="${entry.target.id}"]`);
     if (entry.isIntersecting) {
       intersected.closest(".section-element").classList.add("observed");
