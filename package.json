@@ -1,7 +1,7 @@
 {
   "name": "climate-change-survey",
   "version": "1.0.0",
-  "main": "dist/index.html",
+  "main": "index.html",
   "author": "Ryan Feigenbaum",
   "license": "MIT",
   "devDependencies": {
