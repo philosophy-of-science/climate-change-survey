@@ -2,7 +2,6 @@ import ApexCharts from "apexcharts";
 import { Tableau20 } from "chartjs-plugin-colorschemes/src/colorschemes/colorschemes.tableau";
 
 Apex.colors = Tableau20;
-// Apex.theme.palette = "palette7";
 // console.log(Apex.theme);
 
 function roundNumbers(arr) {
@@ -15,8 +14,8 @@ function createChart(obj) {
     chart: {
       type: "bar",
       height: 380,
-      width: "100%",
     },
+
     legend: {
       show: false,
     },
@@ -39,13 +38,13 @@ function createChart(obj) {
     dataLabels: {
       enabled: true,
       textAnchor: "start",
-      style: {
-        colors: ["#000"],
-      },
       formatter: function (val, opt) {
         return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val;
       },
       offsetX: 0,
+      style: {
+        colors: ["#000"],
+      },
     },
     yaxis: {
       labels: {
@@ -63,7 +62,7 @@ function createChart(obj) {
       offsetY: 0,
       style: {
         fontFamily: "Inter, sans-serif",
-        fontSize: "16px",
+        fontSize: "18px",
       },
     },
   };
@@ -72,12 +71,20 @@ function createChart(obj) {
     series: [],
     chart: {
       height: 380,
-      width: "100%",
       type: "pie",
     },
+
     labels: [],
     legend: {
-      position: "bottom",
+      position: "right",
+      offsetY: 30,
+
+      fontSize: 15,
+    },
+    plotOptions: {
+      pie: {
+        offsetY: 20,
+      },
     },
     responsive: [
       {
@@ -97,7 +104,7 @@ function createChart(obj) {
       offsetY: 0,
       style: {
         fontFamily: "Inter, sans-serif",
-        fontSize: "16px",
+        fontSize: "18px",
       },
     },
   };
@@ -108,6 +115,7 @@ function createChart(obj) {
     barTemplate.xaxis.categories = obj.categories;
     const ctx = document.getElementById(obj.id);
     const chart = new ApexCharts(ctx, barTemplate);
+    chart.theme.palette = "palette7";
     chart.render();
     return;
   }

@@ -29,9 +29,11 @@ body {
 a:link,
 a:visited {
   color: inherit;
+  line-height: inherit;
 }
 
-p {
+p,
+li {
   margin: 1rem 0;
   max-width: 66ch;
 }
@@ -45,41 +47,80 @@ h6 {
   font-family: Raleway, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   margin: 3em 0 1em;
+  font-weight: 700;
+}
+
+h2 + div > h3 {
+  margin-top: 1rem;
+}
+
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.7411em;
+}
+h3 {
+  font-size: 1.5157em;
+}
+h4 {
+  font-size: 1.3195em;
+}
+h5 {
+  font-size: 1.1487em;
+}
+p {
+  font-size: 1em;
+}
+footer {
+  font-size: 0.8706em;
+}
+ul,
+ol {
+  padding-left: 2rem;
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr;
   width: 100%;
-  gap: 1rem;
-  margin: 0 auto;
+  gap: 5rem;
+
   justify-content: center;
+
+  padding: 1rem;
 }
 
 @media (min-width: 1200px) {
   .grid {
-    grid-template-columns: minmax(auto, 992px) minmax(200px, 25%);
+    grid-template-columns: minmax(auto, 992px) minmax(200px, 30%);
   }
 }
 
 header {
-  grid-column: 1/-1;
-  align-items: center;
-  display: grid;
-  grid-template-columns: 1fr minmax(auto, 1024px) 1fr;
   background-image: radial-gradient(rgba(9, 54, 53, 0.25), rgba(2, 10, 10, 0.5)),
     url("../img/iceberg.jpg");
   background-size: cover;
   color: #fff;
   min-height: 60vh;
-  padding: 0 1rem;
-  margin-bottom: 3rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
 }
 
-header .hero__container {
-  grid-column: 2 / 3;
-
-  /* background-color: #fff; */
+header::after {
+  width: calc(100% - 2rem);
+  height: calc(100% - 2rem);
+  border: 3px solid rgba(255, 255, 255, 0.438);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: "";
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+}
+.hero__text {
+  align-self: center;
 }
 .hero__text a {
   display: inline-flex;
@@ -119,7 +160,7 @@ header .hero__container {
 }
 
 .sidebar {
-  padding: 1rem;
+  /* padding: 1rem; */
   width: 100%;
   display: none;
 }
@@ -131,8 +172,8 @@ header .hero__container {
 }
 
 aside {
-  padding: 1rem 2rem;
-  word-break: break-all;
+  padding: 1rem;
+  /* word-break: break-all; */
   height: max-content;
   width: 100%;
   justify-self: center;
@@ -141,22 +182,48 @@ aside {
   background: hsl(0, 0%, 97%);
   border-radius: 4px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 1px 1px 1rem rgba(0, 0, 0, 0.05);
+  overflow: hidden;
 }
-
 aside p:first-child {
   margin-top: 0;
 }
 
-aside p:last-child {
-  margin-bottom: 0;
+.level-1 {
+  text-transform: uppercase;
+  margin-top: 2em;
+  border-bottom: 1px solid;
 }
 
+.level-2 {
+  padding-left: 1rem;
+  font-size: 90%;
+}
+
+.level-3 {
+  padding-left: 2rem;
+  font-size: 85%;
+}
+
+.level-3::after {
+  content: "🗠";
+  text-transform: uppercase;
+  margin-left: 3px;
+  border-radius: 4px;
+  font-size: 1em;
+  padding: 1px 2px;
+  vertical-align: middle;
+}
 .container {
-  margin: 5rem 0;
   padding: 1rem;
+  margin: 1rem 0 5rem 0;
+  background-color: #fff;
+
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 1px 1px 1rem rgba(0, 0, 0, 0.05);
   border-radius: 4px;
-  background-color: hsl(0, 0%, 97%);
+}
+
+.container + .container {
+  margin-top: 5rem;
 }
 
 footer {
@@ -171,55 +238,45 @@ footer p {
   text-align: center;
 }
 
-.section-element p {
-  position: relative;
-  margin-bottom: 0.5rem;
+.observed {
+  font-weight: 900;
 }
 
-.section-element span {
-  opacity: 0;
-  display: inline-block;
-  position: absolute;
-  top: 50%;
-  transform: translate(-10px, -50%);
-  left: -1rem;
-  transition: opacity 0.4s ease-out, transform 0.3s ease-out;
-  line-height: 1;
-  height: 16px;
-  width: 16px;
-  color: var(--blue);
+.level-1 .observed {
+  color: #af1f24;
 }
 
-.section-element a {
-  display: inline-block;
-  line-height: 1;
+.level-3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.section-element ul {
-  display: none;
-  font-size: 0.9em;
-  padding-left: 2rem;
-  margin-bottom: 1rem;
-}
-.section-element li a {
-  display: initial;
-  transition: color 1s;
-}
-
-.observed span {
-  transform: translate(0, -50%);
-  transition: opacity 0.3s ease-in, transform 0.3s ease-in;
-  opacity: 1;
-}
-
-.observed ul {
-  display: block;
-}
-
-:link {
+aside a {
   text-decoration: none;
+  display: block;
+  margin: 1em;
 }
 
-a.current {
-  color: var(--blue);
+.content__sidebar {
+  padding: 1rem 1.5rem;
+  background-color: hsl(0, 0%, 97%);
+  border-radius: 4px;
+  max-width: 66ch;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 1px 1px 1rem rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 1200px) {
+  .content__sidebar {
+    margin: 2rem 0 2rem 2rem;
+    width: 50%;
+    float: right;
+  }
+}
+
+.content__sidebar p {
+  margin: 0;
+}
+.content__sidebar li + li {
+  margin-bottom: 0;
 }

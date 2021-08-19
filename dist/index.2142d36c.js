@@ -456,7 +456,6 @@ var _apexcharts = require("apexcharts");
 var _apexchartsDefault = _parcelHelpers.interopDefault(_apexcharts);
 var _chartjsPluginColorschemesSrcColorschemesColorschemesTableau = require("chartjs-plugin-colorschemes/src/colorschemes/colorschemes.tableau");
 Apex.colors = _chartjsPluginColorschemesSrcColorschemesColorschemesTableau.Tableau20;
-// Apex.theme.palette = "palette7";
 // console.log(Apex.theme);
 function roundNumbers(arr) {
   const roundedNumbers = arr.map(num => Math.round(num));
@@ -466,8 +465,7 @@ function createChart(obj) {
   const barTemplate = {
     chart: {
       type: "bar",
-      height: 380,
-      width: "100%"
+      height: 380
     },
     legend: {
       show: false
@@ -489,13 +487,13 @@ function createChart(obj) {
     dataLabels: {
       enabled: true,
       textAnchor: "start",
-      style: {
-        colors: ["#000"]
-      },
       formatter: function (val, opt) {
         return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val;
       },
-      offsetX: 0
+      offsetX: 0,
+      style: {
+        colors: ["#000"]
+      }
     },
     yaxis: {
       labels: {
@@ -513,7 +511,7 @@ function createChart(obj) {
       offsetY: 0,
       style: {
         fontFamily: "Inter, sans-serif",
-        fontSize: "16px"
+        fontSize: "18px"
       }
     }
   };
@@ -521,12 +519,18 @@ function createChart(obj) {
     series: [],
     chart: {
       height: 380,
-      width: "100%",
       type: "pie"
     },
     labels: [],
     legend: {
-      position: "bottom"
+      position: "right",
+      offsetY: 30,
+      fontSize: 15
+    },
+    plotOptions: {
+      pie: {
+        offsetY: 20
+      }
     },
     responsive: [{
       breakpoint: 480,
@@ -544,7 +548,7 @@ function createChart(obj) {
       offsetY: 0,
       style: {
         fontFamily: "Inter, sans-serif",
-        fontSize: "16px"
+        fontSize: "18px"
       }
     }
   };
@@ -554,6 +558,7 @@ function createChart(obj) {
     barTemplate.xaxis.categories = obj.categories;
     const ctx = document.getElementById(obj.id);
     const chart = new _apexchartsDefault.default(ctx, barTemplate);
+    chart.theme.palette = "palette7";
     chart.render();
     return;
   }
@@ -15258,6 +15263,7 @@ _parcelHelpers.export(exports, "populateSidebar", function () {
   return populateSidebar;
 });
 // Sidebar
+const CARET = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>';
 let options = {
   threshold: 0.75,
   rootMargin: "0px 0px -25%"
@@ -15265,54 +15271,80 @@ let options = {
 let prev = null;
 let callback = (entries, observer) => {
   if (prev && entries.some(entry => entry.isIntersecting)) {
-    prev.closest(".section-element").classList.remove("observed");
-    prev.classList.remove("current");
+    // prev.closest(".section-element").classList.remove("observed");
+    prev.classList.remove("observed");
   }
   entries.forEach(entry => {
-    const intersected = document.querySelector(`a[data-target="${entry.target.id}"]`);
+    const intersected = document.querySelector(`a[href="#${entry.target.id}"]`);
     if (entry.isIntersecting) {
-      intersected.closest(".section-element").classList.add("observed");
-      intersected.classList.add("current");
+      intersected.classList.add("observed");
+      const dataGroup = intersected.dataset.group;
+      console.log(dataGroup);
+      // intersected.parentElement.add("observed");
       prev = intersected;
     }
   });
 };
 let observer = new IntersectionObserver(callback, options);
 function populateSidebar() {
-  const aside = document.querySelector("aside");
-  const headings = document.querySelectorAll("main h2");
-  const caret = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>';
-  for (const heading of headings) {
-    const graphs = heading.parentElement.querySelectorAll(".container > div:first-child");
-    const ul = document.createElement("ul");
-    graphs.forEach(el => {
-      observer.observe(el);
-      const id = el.id;
-      const link = document.createElement("a");
-      link.dataset.target = id;
-      link.setAttribute("href", `#${id}`);
-      const text = el.querySelector(".apexcharts-title-text").textContent;
-      const li = document.createElement("li");
-      link.textContent = text;
-      li.append(link);
-      ul.append(li);
+  let id = 0;
+  const idMap = [];
+  const h2s = Array.from(document.querySelectorAll("h2"));
+  const h3s = Array.from(document.querySelectorAll("h3"));
+  const graphs = Array.from(document.querySelectorAll(".container"));
+  function addToIdMap(el, parent, text, level) {
+    idMap.push({
+      id: el.id,
+      value: el,
+      parent,
+      parentId: parent ? parent.id : null,
+      text,
+      level
     });
-    const text = heading.textContent;
-    const id = heading.id;
-    const div = document.createElement("div");
-    const p = document.createElement("p");
-    div.classList.add("section-element");
-    const a = document.createElement("a");
-    a.textContent = text;
-    a.setAttribute("href", `#${id}`);
-    const span = document.createElement("span");
-    span.innerHTML = caret;
-    p.append(span);
-    p.appendChild(a);
-    div.append(p);
-    div.append(ul);
-    aside.appendChild(div);
   }
+  function findParent(el, target, text, level, ...parentQuery) {
+    let parentEl = el;
+    for (const p in parentQuery) {
+      parentEl = parentEl.parentElement;
+    }
+    const parent = target ? parentEl.querySelector(target) : null;
+    el.id = id;
+    addToIdMap(el, parent, text, level);
+    id++;
+  }
+  h2s.forEach(el => findParent(el, null, "h2", 1, "parentElement"));
+  h3s.forEach(el => findParent(el, "h2", "h3", 2, "parentElement", "parentElement"));
+  graphs.forEach(el => findParent(el, "h3", "graph", 3, "parentElement"));
+  function makeTree(nodes, parentId) {
+    return nodes.filter(node => node.parentId === parentId).reduce((tree, node) => {
+      return [...tree, {
+        ...node,
+        children: makeTree(nodes, node.id)
+      }];
+    }, []);
+  }
+  const tree = makeTree(idMap, null);
+  const aside = document.querySelector("aside");
+  function createDom(val) {
+    val.forEach(node => {
+      console.log(node);
+      observer.observe(node.value);
+      let text = node.value.textContent;
+      if (node.value.classList.contains("container")) {
+        text = node.value.querySelector(".apexcharts-title-text").textContent;
+      }
+      const id = node.value.id;
+      const a = document.createElement("a");
+      a.setAttribute("href", `#${id}`);
+      a.textContent = text;
+      a.classList.add("level-" + node.level);
+      aside.append(a);
+      if (node.children.length) {
+        createDom(node.children);
+      }
+    });
+  }
+  createDom(tree);
 }
 
 },{"@parcel/transformer-js/lib/esmodule-helpers.js":"5gA8y"}]},["21c8X","3L8AI"], "3L8AI", "parcelRequire970d")
