@@ -1,7 +1,7 @@
 {
   "name": "climate-change-survey",
   "version": "1.0.0",
-  "main": "index.html",
+  "main": "./docs/index.html",
   "author": "Ryan Feigenbaum",
   "license": "MIT",
   "targets": {
@@ -19,6 +19,6 @@
   },
   "scripts": {
     "start": "yarn run parcel serve ./src/index.html",
-    "build": "yarn run parcel build ./src/index.html"
+    "build": "rm -rf ./docs && yarn run parcel build ./src/index.html"
   }
 }

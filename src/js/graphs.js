@@ -78,7 +78,6 @@ function createChart(obj) {
     legend: {
       position: "right",
       offsetY: 30,
-
       fontSize: 15,
     },
     plotOptions: {

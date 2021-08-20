@@ -15269,81 +15269,110 @@ let options = {
   rootMargin: "0px 0px -25%"
 };
 let prev = null;
+let prevGroup = null;
+let prevLevel = null;
+let id = 0;
+const aside = document.querySelector("aside");
+const idMap = [];
+let sidebarIsPopulated = false;
+const h2s = Array.from(document.querySelectorAll("h2"));
+const h3s = Array.from(document.querySelectorAll("h3"));
+const graphs = Array.from(document.querySelectorAll(".container"));
+function createDom(val) {
+  val.forEach(node => {
+    observer.observe(node.value);
+    let text = node.value.textContent;
+    if (node.value.classList.contains("container")) {
+      text = node.value.querySelector(".apexcharts-title-text").textContent;
+    }
+    const id = node.value.id;
+    const a = document.createElement("a");
+    a.setAttribute("href", `#${id}`);
+    a.setAttribute("data-group", node.parentId);
+    a.textContent = text;
+    a.classList.add("level-" + node.level);
+    aside.append(a);
+    if (node.children.length) {
+      createDom(node.children);
+    }
+  });
+}
+function findParent(el, target, text, level, ...parentQuery) {
+  let parentEl = el;
+  for (const p in parentQuery) {
+    parentEl = parentEl.parentElement;
+  }
+  const parent = target ? parentEl.querySelector(target) : null;
+  el.id = id;
+  addToIdMap(el, parent, text, level);
+  id++;
+}
+function addToIdMap(el, parent, text, level) {
+  idMap.push({
+    id: el.id,
+    value: el,
+    parent,
+    parentId: parent ? parent.id : null,
+    text,
+    level
+  });
+}
+function makeTree(nodes, parentId) {
+  return nodes.filter(node => node.parentId === parentId).reduce((tree, node) => {
+    return [...tree, {
+      ...node,
+      children: makeTree(nodes, node.id)
+    }];
+  }, []);
+}
+function getPrevSibling(current, target) {
+  const previousSib = current.previousElementSibling;
+  const doesItMatch = previousSib.classList.contains(target);
+  if (doesItMatch) {
+    return previousSib;
+  }
+  return getPrevSibling(previousSib, target);
+}
 let callback = (entries, observer) => {
   if (prev && entries.some(entry => entry.isIntersecting)) {
-    // prev.closest(".section-element").classList.remove("observed");
     prev.classList.remove("observed");
+    prevGroup.forEach(el => el.classList.remove("show"));
   }
   entries.forEach(entry => {
     const intersected = document.querySelector(`a[href="#${entry.target.id}"]`);
     if (entry.isIntersecting) {
       intersected.classList.add("observed");
-      const dataGroup = intersected.dataset.group;
-      console.log(dataGroup);
-      // intersected.parentElement.add("observed");
+      if (intersected.classList.contains("level-2")) {
+        prevLevel && prevLevel.classList.remove("parent");
+      }
+      if (intersected.classList.contains("level-3")) {
+        const newPrevLevel = getPrevSibling(intersected, "level-2");
+        if (newPrevLevel !== prevLevel) {
+          newPrevLevel && newPrevLevel.classList.add("parent");
+          prevLevel && prevLevel.classList.remove("parent");
+        }
+        prevLevel = newPrevLevel;
+      }
+      const group = intersected.dataset.group;
+      const groupEls = intersected.parentElement.querySelectorAll(`[data-group="${group}"]`);
+      groupEls.forEach(el => el.classList.add("show"));
       prev = intersected;
+      prevGroup = groupEls;
     }
   });
 };
 let observer = new IntersectionObserver(callback, options);
 function populateSidebar() {
-  let id = 0;
-  const idMap = [];
-  const h2s = Array.from(document.querySelectorAll("h2"));
-  const h3s = Array.from(document.querySelectorAll("h3"));
-  const graphs = Array.from(document.querySelectorAll(".container"));
-  function addToIdMap(el, parent, text, level) {
-    idMap.push({
-      id: el.id,
-      value: el,
-      parent,
-      parentId: parent ? parent.id : null,
-      text,
-      level
-    });
+  window.addEventListener("resize", populateSidebar);
+  const w = document.documentElement.clientWidth;
+  if (w < 1200 || sidebarIsPopulated) {
+    return;
   }
-  function findParent(el, target, text, level, ...parentQuery) {
-    let parentEl = el;
-    for (const p in parentQuery) {
-      parentEl = parentEl.parentElement;
-    }
-    const parent = target ? parentEl.querySelector(target) : null;
-    el.id = id;
-    addToIdMap(el, parent, text, level);
-    id++;
-  }
+  sidebarIsPopulated = true;
   h2s.forEach(el => findParent(el, null, "h2", 1, "parentElement"));
   h3s.forEach(el => findParent(el, "h2", "h3", 2, "parentElement", "parentElement"));
   graphs.forEach(el => findParent(el, "h3", "graph", 3, "parentElement"));
-  function makeTree(nodes, parentId) {
-    return nodes.filter(node => node.parentId === parentId).reduce((tree, node) => {
-      return [...tree, {
-        ...node,
-        children: makeTree(nodes, node.id)
-      }];
-    }, []);
-  }
   const tree = makeTree(idMap, null);
-  const aside = document.querySelector("aside");
-  function createDom(val) {
-    val.forEach(node => {
-      console.log(node);
-      observer.observe(node.value);
-      let text = node.value.textContent;
-      if (node.value.classList.contains("container")) {
-        text = node.value.querySelector(".apexcharts-title-text").textContent;
-      }
-      const id = node.value.id;
-      const a = document.createElement("a");
-      a.setAttribute("href", `#${id}`);
-      a.textContent = text;
-      a.classList.add("level-" + node.level);
-      aside.append(a);
-      if (node.children.length) {
-        createDom(node.children);
-      }
-    });
-  }
   createDom(tree);
 }
 
