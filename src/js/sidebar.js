@@ -4,8 +4,8 @@ const CARET =
   '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>';
 
 let options = {
-  threshold: 0.75,
-  rootMargin: "0px 0px -25%",
+  threshold: 0.5,
+  // rootMargin: "0px 0px -25%",
 };
 
 let prev = null;
@@ -25,7 +25,7 @@ function createDom(val) {
     observer.observe(node.value);
     let text = node.value.textContent;
     if (node.value.classList.contains("container")) {
-      text = node.value.querySelector(".apexcharts-title-text").textContent;
+      text = node.value.previousElementSibling.textContent;
     }
     const id = node.value.id;
     const a = document.createElement("a");
@@ -97,27 +97,30 @@ let callback = (entries, observer) => {
     if (entry.isIntersecting) {
       intersected.classList.add("observed");
 
-      if (intersected.classList.contains("level-2")) {
-        prevLevel && prevLevel.classList.remove("parent");
-      }
-
       if (intersected.classList.contains("level-3")) {
         const newPrevLevel = getPrevSibling(intersected, "level-2");
+        newPrevLevel && newPrevLevel.classList.add("parent");
         if (newPrevLevel !== prevLevel) {
-          newPrevLevel && newPrevLevel.classList.add("parent");
           prevLevel && prevLevel.classList.remove("parent");
         }
         prevLevel = newPrevLevel;
+      } else {
+        prevLevel && prevLevel.classList.remove("parent");
       }
 
       const group = intersected.dataset.group;
+
       const groupEls = intersected.parentElement.querySelectorAll(
         `[data-group="${group}"]`
       );
+
       groupEls.forEach((el) => el.classList.add("show"));
 
       prev = intersected;
       prevGroup = groupEls;
+    } else {
+      intersected.classList.remove("observed");
+      // intersected.classList.remove("parent");
     }
   });
 };

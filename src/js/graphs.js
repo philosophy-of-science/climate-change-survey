@@ -54,17 +54,6 @@ function createChart(obj) {
     xaxis: {
       categories: [],
     },
-    title: {
-      text: "",
-      align: "left",
-      margin: 10,
-      offsetX: 0,
-      offsetY: 0,
-      style: {
-        fontFamily: "Inter, sans-serif",
-        fontSize: "18px",
-      },
-    },
   };
 
   const pieTemplate = {
@@ -95,21 +84,9 @@ function createChart(obj) {
         },
       },
     ],
-    title: {
-      text: "",
-      align: "left",
-      margin: 10,
-      offsetX: 0,
-      offsetY: 0,
-      style: {
-        fontFamily: "Inter, sans-serif",
-        fontSize: "18px",
-      },
-    },
   };
 
   if (obj.type === "bar") {
-    barTemplate.title.text = obj.name;
     barTemplate.series[0].data = obj.data;
     barTemplate.xaxis.categories = obj.categories;
     const ctx = document.getElementById(obj.id);
@@ -119,7 +96,6 @@ function createChart(obj) {
     return;
   }
   if (obj.type === "circle") {
-    pieTemplate.title.text = obj.name;
     pieTemplate.series = obj.data;
     pieTemplate.labels = obj.categories;
     const ctx = document.getElementById(obj.id);
