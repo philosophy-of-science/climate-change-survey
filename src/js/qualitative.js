@@ -1,11 +1,11 @@
-const data = require("../responses.json");
-
+import data from "./responses.json";
+import Swiper, { Navigation, Pagination } from "swiper";
+Swiper.use([Navigation, Pagination]);
 export function writeCommentsToDom() {
   data.forEach((comments) => {
     const { id, responses, question } = comments;
 
     const container = document.getElementById(id).parentElement;
-    console.log(container);
     const commentContainer = document.createElement("div");
     commentContainer.classList.add("container-comments");
     const titleEl = document.createElement("p");
@@ -14,7 +14,7 @@ export function writeCommentsToDom() {
     titleEl.textContent = title;
     commentContainer.append(titleEl);
     const swiperContainer = document.createElement("div");
-    swiperContainer.classList.add("swiper-container");
+    swiperContainer.classList.add("swiper");
     commentContainer.append(swiperContainer);
     const wrapper = document.createElement("div");
     wrapper.classList.add("swiper-wrapper");
@@ -39,7 +39,7 @@ export function writeCommentsToDom() {
     next.classList.add("swiper-button-next");
     swiperContainer.append(next);
     container.insertAdjacentElement("afterend", commentContainer);
-    const swiper = new Swiper(".swiper-container", {
+    const swiper = new Swiper(".swiper", {
       // Optional parameters
       direction: "horizontal",
       loop: true,

@@ -130,7 +130,7 @@ let observer = new IntersectionObserver(callback, options);
 export function populateSidebar() {
   window.addEventListener("resize", populateSidebar);
   const w = document.documentElement.clientWidth;
-  if (w < 1200 || sidebarIsPopulated) {
+  if (w < 1024 || sidebarIsPopulated) {
     return;
   }
   sidebarIsPopulated = true;

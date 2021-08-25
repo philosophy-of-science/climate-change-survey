@@ -27,6 +27,7 @@ body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
+
 a:link,
 a:visited {
   color: inherit;
@@ -56,8 +57,15 @@ h2 + div > h3 {
 }
 
 h1 {
-  font-size: 5.2917rem;
+  font-size: 3rem;
 }
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 5.2917rem;
+  }
+}
+
 h2 {
   font-size: 2.6458rem;
 }
@@ -98,6 +106,7 @@ ol {
   }
 }
 
+/* Hero  */
 header {
   background-image: radial-gradient(rgba(9, 54, 53, 0.25), rgba(2, 10, 10, 0.5)),
     url("../img/iceberg.jpg");
@@ -149,12 +158,15 @@ header::after {
   letter-spacing: 0.3px;
 }
 
+/* Content  */
 .content {
   overflow: hidden;
 }
+
 .content a {
   transition: color 0.2s;
 }
+
 .content a:hover {
   color: var(--red);
 }
@@ -163,6 +175,35 @@ header::after {
   margin-top: 0;
 }
 
+/* Graphs */
+.container,
+.container-comments {
+  padding: 1rem;
+  margin: 1rem 0 5rem 0;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 1px 1px 1rem rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.container + .container-comments {
+  margin-top: -4rem;
+}
+
+/* Comments */
+.comments-title {
+  font-weight: 700;
+  margin-top: 0;
+}
+.swiper-slide {
+  padding: 2rem 3rem 3rem;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--red) !important;
+}
+
+/* Table of Contents  */
 .sidebar {
   /* padding: 1rem; */
   width: 100%;
@@ -254,47 +295,19 @@ aside p:first-child {
   display: block;
 }
 
-/* Graphs */
-
-.container,
-.container-comments {
-  padding: 1rem;
-  margin: 1rem 0 5rem 0;
-  background-color: #fff;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 1px 1px 1rem rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
-}
-
-.comments-title {
-  font-weight: 700;
-  margin-top: 0;
-}
-
-.swiper-slide p {
-  margin: 1rem auto;
-}
-
-.container + .container,
-.container + .container-comments {
-  margin-top: 5rem;
-}
-
-footer {
-  min-height: 5rem;
-  background-color: var(--silver);
-  padding: 3rem;
-}
-
-footer p {
-  max-width: 100%;
-  margin: 0;
-  text-align: center;
-}
-
 aside a {
   text-decoration: none;
   display: block;
   margin: 1em;
+}
+
+/* Pull Quote  */
+.content__sidebar p:first-child {
+  margin: 0;
+  font-weight: 700;
+}
+.content__sidebar li + li {
+  margin-bottom: 0;
 }
 
 .content__sidebar {
@@ -313,10 +326,15 @@ aside a {
   }
 }
 
-.content__sidebar p:first-child {
-  margin: 0;
-  font-weight: 700;
+/* Footer  */
+footer {
+  min-height: 5rem;
+  background-color: var(--silver);
+  padding: 3rem;
 }
-.content__sidebar li + li {
-  margin-bottom: 0;
+
+footer p {
+  max-width: 100%;
+  margin: 0;
+  text-align: center;
 }
