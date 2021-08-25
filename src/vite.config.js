@@ -1,8 +1,8 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
+  base: "/climate-change-survey",
   build: {
     outDir: "../docs",
-    assetsDir: "climate-change-survey",
   },
 });
