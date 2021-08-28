@@ -1,7 +1,7 @@
 import ApexCharts from "apexcharts";
-import { Tableau20 } from "chartjs-plugin-colorschemes/src/colorschemes/colorschemes.tableau";
+import { RedBlueBrown12 } from "chartjs-plugin-colorschemes/src/colorschemes/colorschemes.tableau";
 
-Apex.colors = Tableau20;
+Apex.colors = RedBlueBrown12;
 // console.log(Apex.theme);
 
 function roundNumbers(arr) {
@@ -65,21 +65,23 @@ function createChart(obj) {
 
     labels: [],
     legend: {
-      position: "right",
-      offsetY: 30,
+      position: "bottom",
+
       fontSize: 15,
     },
     plotOptions: {
-      pie: {
-        offsetY: 20,
-      },
+      pie: {},
     },
     responsive: [
       {
         breakpoint: 480,
+        chart: {
+          height: 480,
+        },
         options: {
           legend: {
             position: "bottom",
+            fontSize: "13px",
           },
         },
       },
@@ -91,10 +93,10 @@ function createChart(obj) {
     barTemplate.xaxis.categories = obj.categories;
     const ctx = document.getElementById(obj.id);
     const chart = new ApexCharts(ctx, barTemplate);
-    chart.theme.palette = "palette7";
     chart.render();
     return;
   }
+
   if (obj.type === "circle") {
     pieTemplate.series = obj.data;
     pieTemplate.labels = obj.categories;
@@ -105,7 +107,7 @@ function createChart(obj) {
   }
 }
 
-const data = {
+export const data = {
   // First set of data
   onlineActivities: {
     data: roundNumbers([
@@ -359,8 +361,30 @@ const data = {
 };
 
 // Render charts
+function renderChart(id) {
+  createChart(data[id]);
+  import("./qualitative").then((module) => {
+    module.writeCommentsToDom(id);
+  });
+}
+
+let options = {
+  threshold: 0.5,
+  // rootMargin: "0px 0px -25%",
+};
+let callback = (entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      renderChart(entry.target.id);
+      observer.unobserve(entry.target);
+    }
+  });
+};
+
+let observer = new IntersectionObserver(callback, options);
+
+const graphs = document.querySelectorAll(".container > div");
+
 export default function renderCharts() {
-  for (const item in data) {
-    createChart(data[item]);
-  }
+  graphs.forEach((graph) => observer.observe(graph));
 }

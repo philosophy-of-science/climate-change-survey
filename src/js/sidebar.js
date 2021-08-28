@@ -1,8 +1,5 @@
 // Sidebar
 
-const CARET =
-  '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16"><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>';
-
 let options = {
   threshold: 0.5,
   // rootMargin: "0px 0px -25%",
@@ -18,6 +15,7 @@ let sidebarIsPopulated = false;
 
 const h2s = Array.from(document.querySelectorAll("h2"));
 const h3s = Array.from(document.querySelectorAll("h3"));
+const h4s = Array.from(document.querySelectorAll("h4"));
 const graphs = Array.from(document.querySelectorAll(".container"));
 
 function createDom(val) {
@@ -138,7 +136,7 @@ export function populateSidebar() {
   h3s.forEach((el) =>
     findParent(el, "h2", "h3", 2, "parentElement", "parentElement")
   );
-  graphs.forEach((el) => findParent(el, "h3", "graph", 3, "parentElement"));
+  h4s.forEach((el) => findParent(el, "h3", "h4", 3, "parentElement"));
   const tree = makeTree(idMap, null);
   createDom(tree);
 }
