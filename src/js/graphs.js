@@ -372,6 +372,7 @@ let options = {
   threshold: 0.5,
   // rootMargin: "0px 0px -25%",
 };
+
 let callback = (entries, observer) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {

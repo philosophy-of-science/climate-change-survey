@@ -16,7 +16,6 @@ let sidebarIsPopulated = false;
 const h2s = Array.from(document.querySelectorAll("h2"));
 const h3s = Array.from(document.querySelectorAll("h3"));
 const h4s = Array.from(document.querySelectorAll("h4"));
-const graphs = Array.from(document.querySelectorAll(".container"));
 
 function createDom(val) {
   val.forEach((node) => {
@@ -26,12 +25,12 @@ function createDom(val) {
       text = node.value.previousElementSibling.textContent;
     }
     const id = node.value.id;
-    const a = document.createElement("a");
-    a.setAttribute("href", `#${id}`);
-    a.setAttribute("data-group", node.parentId);
-    a.textContent = text;
-    a.classList.add("level-" + node.level);
-    aside.append(a);
+    const p = document.createElement("p");
+    p.id = `target-${id}`;
+    p.setAttribute("data-group", node.parentId);
+    p.textContent = text;
+    p.classList.add("level-" + node.level);
+    aside.append(p);
     if (node.children.length) {
       createDom(node.children);
     }
@@ -90,8 +89,8 @@ let callback = (entries, observer) => {
     prevGroup.forEach((el) => el.classList.remove("show"));
   }
   entries.forEach((entry) => {
-    const intersected = document.querySelector(`a[href="#${entry.target.id}"]`);
-
+    const intersected = document.querySelector(`#target-${entry.target.id}`);
+    console.log(intersected);
     if (entry.isIntersecting) {
       intersected.classList.add("observed");
 
