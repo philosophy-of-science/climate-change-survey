@@ -331,7 +331,7 @@ footer {
 }
 
 footer p {
+  font-size: 15px;
   max-width: 100%;
   margin: 0;
-  text-align: center;
 }
